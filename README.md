@@ -5,7 +5,7 @@
 
 ---
 
-## 🧠 What is this?
+## What is this?
 
 **TDB-Lattice-Agent-Memory** is an independent open-source project that reimagines AI agent memory with **LatticeDB** — a single embedded database that combines **graph, vector, and full-text search** in one file.
 
@@ -13,7 +13,7 @@ It is a **fork of TencentDB Agent Memory**, replacing SQLite with LatticeDB as t
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 | Feature | How it works |
 | :--- | :--- |
@@ -27,7 +27,7 @@ It is a **fork of TencentDB Agent Memory**, replacing SQLite with LatticeDB as t
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```mermaid
 flowchart LR
@@ -39,3 +39,138 @@ flowchart LR
     G --> H[MemoryHub]
     H --> B
     H --> C
+```
+
+- **SQLite** — canonical source of truth (documents, versions, ACL, outbox, audit).
+- **LatticeDB** — disposable read/search projection (graph, embeddings, BM25, denormalized payload).
+- **jsonmd** — document format with `---json` metadata block + Markdown body.
+
+---
+
+## Performance
+
+| Metric | Value |
+| :--- | :--- |
+| Graph traversal (per edge) | **9 µs** |
+| Vector search (10-NN, 1M vectors) | **0.83 ms** |
+| Memory footprint (RSS) | **2.4 MB** |
+| Full-text BM25 (100 docs) | **19 µs** |
+
+> Compared to SQLite, LatticeDB is **5–78x faster** for graph operations and **3–13x faster** than Neo4j for local graph traversal.
+
+---
+
+## Quick Start
+
+```bash
+git clone https://github.com/YOUR-USERNAME/TDB-Lattice-Agent-Memory
+cd TDB-Lattice-Agent-Memory/deploy/global-images
+cp .env.example .env
+# Fill LLM credentials
+./start-all.sh
+```
+
+Open the panel: [http://localhost:8125](http://localhost:8125)
+
+---
+
+## Document Format (jsonmd)
+
+```jsonmd
+---json
+{
+  "type": "adr",
+  "status": "approved",
+  "module": "payment",
+  "relationships": [
+    { "target": "./spec-api.md", "type": "implements" },
+    { "target": "../architecture/overview.md", "type": "relates" }
+  ]
+}
+---
+# ADR-023: New Payment Gateway
+
+## Status
+Approved
+
+## Context
+The old gateway is deprecated...
+```
+
+---
+
+## Integration with AI Agents
+
+| Agent / Client | Support |
+| :--- | :--- |
+| **OpenCode** | ✅ v2.0.1+ |
+| **OpenClaw** | ✅ via plugin |
+| **Claude Desktop** | ✅ via MCP |
+| **Cursor** | ✅ via MCP |
+| **CodeBuddy** | ✅ via Proxy |
+| **Hermes** | ✅ via Python adapter |
+
+---
+
+## License
+
+**MIT** (inherited from TencentDB Agent Memory)
+
+---
+
+## Acknowledgements
+
+- [TencentDB Agent Memory](https://github.com/Tencent/TencentDB-Agent-Memory) — foundation and L0-L3 memory architecture
+- [LatticeDB](https://github.com/jeffhajewski/latticedb) — graph + vector + FTS embedded database
+- [jsonmd](https://www.piwheels.org/project/jsonmd/) — inspiration for the document format
+
+---
+
+## Links
+
+- **GitHub**: https://github.com/YOUR-USERNAME/TDB-Lattice-Agent-Memory
+- **Original project**: https://github.com/Tencent/TencentDB-Agent-Memory
+- **LatticeDB**: https://github.com/jeffhajewski/latticedb
+- **Discord**: [Join the community](https://discord.gg/dJQM6mKMF)
+
+---
+
+## Roadmap
+
+- [x] LatticeDB adapter
+- [x] jsonmd parser
+- [x] Hybrid search (BM25 + vector + RRF)
+- [x] ACL enforcement
+- [ ] Full L0-L3 lifecycle
+- [ ] CodeGraph with graph traversal
+- [ ] MemoryHub graph visualization
+- [ ] External embedding providers
+- [ ] Multi-project support
+
+---
+
+**Build once. Remember forever.** 
+```
+
+## Теги для репозитория (Topics)
+
+```yaml
+- ai-agents
+- memory
+- lattice
+- graph-database
+- vector-search
+- full-text-search
+- rag
+- opencode
+- openclaw
+- mcp-server
+- tencentdb
+- jsonmd
+- llm
+- agent-memory
+```
+
+---
+
+Готово! Можете копировать и использовать. 🚀
