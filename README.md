@@ -128,7 +128,7 @@ The old gateway is deprecated...
 
 ## Links
 
-- **GitHub**: https://github.com/YOUR-USERNAME/TDB-Lattice-Agent-Memory
+- **GitHub**: https://github.com/dev993848/TDB-Lattice-Agent-Memory
 - **Original project**: https://github.com/Tencent/TencentDB-Agent-Memory
 - **LatticeDB**: https://github.com/jeffhajewski/latticedb
 - **Discord**: [Join the community](https://discord.gg/dJQM6mKMF)
