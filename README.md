@@ -151,26 +151,3 @@ The old gateway is deprecated...
 
 **Build once. Remember forever.** 
 ```
-
-## Теги для репозитория (Topics)
-
-```yaml
-- ai-agents
-- memory
-- lattice
-- graph-database
-- vector-search
-- full-text-search
-- rag
-- opencode
-- openclaw
-- mcp-server
-- tencentdb
-- jsonmd
-- llm
-- agent-memory
-```
-
----
-
-Готово! Можете копировать и использовать. 🚀
